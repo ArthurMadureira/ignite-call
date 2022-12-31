@@ -1,11 +1,21 @@
 import { Button, Heading, MultiStep, Text } from '@ignite-ui/react'
-import { ArrowRight } from 'phosphor-react'
+import { ArrowRight, Check } from 'phosphor-react'
 // import { api } from '../../lib/axios'
+import { signIn, useSession } from 'next-auth/react'
 import { Container, Header } from '../styles'
-import { ConnectBox, ConnectItem } from './styles'
+import { AuthError, ConnectBox, ConnectItem } from './styles'
+import { useRouter } from 'next/router'
 
 export default function Register() {
-  // async function handleRegister(data: RegisterFormData) {}
+  const session = useSession()
+  const router = useRouter()
+
+  const hasAuthError = !!router.query.error
+  const isSignedIn = session.status === 'authenticated'
+
+  async function handleConnectCalendar() {
+    await signIn('google')
+  }
 
   return (
     <Container>
@@ -25,13 +35,27 @@ export default function Register() {
         <ConnectItem>
           <Text>Google Calendar</Text>
 
-          <Button variant="secondary">
-            Conectar
-            <ArrowRight />
-          </Button>
+          {isSignedIn ? (
+            <Button size="sm" disabled>
+              Conectado
+              <Check />
+            </Button>
+          ) : (
+            <Button variant="secondary" onClick={handleConnectCalendar}>
+              Conectar
+              <ArrowRight />
+            </Button>
+          )}
         </ConnectItem>
 
-        <Button type="submit" disabled={true}>
+        {hasAuthError && (
+          <AuthError size="sm">
+            Failed to connect to Google, make sure you enable Google Calendar
+            access permissions
+          </AuthError>
+        )}
+
+        <Button type="submit" disabled={!isSignedIn}>
           Next Step
           <ArrowRight />
         </Button>
