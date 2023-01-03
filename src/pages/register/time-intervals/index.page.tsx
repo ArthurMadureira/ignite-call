@@ -48,7 +48,7 @@ export default function TimeIntervals() {
     watch,
     control,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<TimeIntervalsFormData>({
     resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
