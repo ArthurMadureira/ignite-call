@@ -62,7 +62,7 @@ export default function Register() {
     <Container>
       <Header>
         <Heading as="strong" size="2xl">
-          Welcome to Ignite Call!
+          Welcome to Schedulio!
         </Heading>
         <Text>
           We need some information to create your profile! Oh, you can edit this
