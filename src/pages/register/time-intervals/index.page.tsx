@@ -12,7 +12,7 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { convertTimeStringToMinutes } from '../../../utils/convert-time-strings-to-minute'
 import { getWeekDays } from '../../../utils/get-week-days'
-// import { api } from '../../lib/axios'
+import { api } from '../../../lib/axios'
 import { Container, Header } from '../styles'
 import {
   FormError,
@@ -60,7 +60,6 @@ const timeIntervalsFormSchema = z.object({
     ),
 })
 
-// type TimeIntervalsFormatInput = z.input<typeof timeIntervalsFormSchema>
 type TimeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
 export default function TimeIntervals() {
@@ -95,8 +94,11 @@ export default function TimeIntervals() {
   const intervals = watch('intervals')
 
   async function handleSetTimeIntervals(data: any) {
-    const formData = data as TimeIntervalsFormOutput
-    console.log(formData)
+    const { intervals } = data as TimeIntervalsFormOutput
+
+    await api.post('/users/time-intervals', {
+      intervals,
+    })
   }
 
   return (
