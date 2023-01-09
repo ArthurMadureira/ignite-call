@@ -81,6 +81,7 @@ export const CalendarDay = styled('button', {
   textAlign: 'center',
   cursor: 'pointer',
   borderRadius: '$sm',
+  transition: 'background .2s',
 
   '&:disabled': {
     background: 'none',
@@ -93,6 +94,6 @@ export const CalendarDay = styled('button', {
   },
 
   '&:focus': {
-    boxShadow: '0 0 0 1px $colors$gray100'
-  }
+    boxShadow: '0 0 0 1px $colors$gray100',
+  },
 })
