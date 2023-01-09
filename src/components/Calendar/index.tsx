@@ -16,8 +16,7 @@ export function Calendar() {
     <CalendarContainer>
       <CalendarHeader>
         <CalendarTitle>
-          Junuary
-          <span>2023</span>
+          Junuary<span> 2023</span>
         </CalendarTitle>
 
         <CalendarActions>
