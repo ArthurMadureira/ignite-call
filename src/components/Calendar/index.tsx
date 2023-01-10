@@ -82,7 +82,7 @@ export function Calendar() {
       ...daysInMonthArray.map((date) => {
         return {
           date,
-          disabled: false,
+          disabled: date.endOf('day').isBefore(new Date()),
         }
       }),
       ...nextMonthFillArray.map((date) => {
@@ -117,7 +117,7 @@ export function Calendar() {
       <CalendarHeader>
         <CalendarTitle>
           {currentMonth}
-          <span>{currentYear}</span>
+          <span> {currentYear}</span>
         </CalendarTitle>
 
         <CalendarActions>
