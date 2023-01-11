@@ -19,8 +19,6 @@ export function CalendarStep() {
     ? dayjs(selectedDate).format('DD[ of ]MMMM')
     : null
 
-  console.log(weekDay)
-
   return (
     <Container isTimePickerOpen={isDateSelected}>
       <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
