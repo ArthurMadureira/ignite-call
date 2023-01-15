@@ -29,6 +29,7 @@ export async function getGoogleOAuthToken(userId: string) {
 
   if (isTokenExpired) {
     const { credentials } = await auth.refreshAccessToken()
+
     const {
       access_token,
       expiry_date,
